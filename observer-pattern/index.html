@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Observer</title>
+</head>
+
+<body>
+    <div class="base">
+        <div class="square" id="elementObserver1">
+        </div>
+        <button type="button" onclick="model.increment()">INCREMENT</button>
+        <p><strong>Olhar o terminal</strong></p>
+    </div>
+
+    <script src="numberModel.js"></script>
+    <script src="elementObserver.js"></script>
+    <script src="consoleObserver.js"></script>
+    <script src="historyObserver.js"></script>
+
+    <script type="text/javascript">
+        const model = new NumberModel()
+        const eObs1 = new ElementObserver('elementObserver1')
+        const consoleObserver = new ConsoleObserver()
+        const historyObserver = new HistoryObserver()
+
+        // Passamos para o observed os Observers que ele vai usar
+        model.addObserver(eObs1)
+        model.addObserver(consoleObserver)
+        model.addObserver(historyObserver)
+
+        model.notifyObservers()
+    </script>
+</body>
+
+</html>
